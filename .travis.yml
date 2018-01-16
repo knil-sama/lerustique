@@ -11,6 +11,7 @@ rust:
   - stable
   - 1.0.0
 # The main build
+before_script: cd project
 script:
   - cargo build
   - cargo test
