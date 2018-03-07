@@ -1,0 +1,13 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: debian:stretch
+    steps:
+      - checkout
+      - run:
+          name: test1
+          command: echo ${CIRCLE_PR_NUMBER}
+      - run:
+          name: test2
+          command: "echo \"${CIRCLE_PR_NUMBER}\""
