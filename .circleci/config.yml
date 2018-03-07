@@ -11,3 +11,9 @@ jobs:
       - run:
           name: test2
           command: "echo \"${CIRCLE_PR_NUMBER}\""
+      - run:
+          name: test3
+          command: "echo \"${CIRCLE_PULL_REQUEST##*/}\""
+      - run:
+          name: test4
+          command: echo ${CIRCLE_PULL_REQUEST##*/}
