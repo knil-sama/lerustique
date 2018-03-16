@@ -3,11 +3,14 @@ jobs:
   build:
     docker:
       - image: debian:stretch
+    environment:
+      TEST_PR_NUMBER: ${CIRCLE_PULL_REQUEST##*/}
+      TEST_REAL_NAME: ${TEST_PR_NUMBER:-CIRCLE_BRANCH}
     steps:
       - checkout
       - run:
           name: export
-          command: export PR_NUMBER=${CIRCLE_PULL_REQUEST##*/}
+          command: export PR_NUMBER=${CIRCLE_PULL_REQUEST##*/} && echo ${PR_NUMBER}
       - run: echo ${PR_NUMBER}
       - run: echo ${CIRCLE_BRANCH}
       - run:
