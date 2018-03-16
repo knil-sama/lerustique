@@ -1,0 +1,25 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: debian:stretch
+    environment:
+      TEST_PR_NUMBER: "echo ${CIRCLE_PULL_REQUEST##*/}"
+      TEST_REAL_NAME: "echo ${TEST_PR_NUMBER:-CIRCLE_BRANCH}"
+    steps:
+      - checkout
+      - run:
+          name: export
+          command: PR_NUMBER=${CIRCLE_PULL_REQUEST##*/} && echo ${PR_NUMBER} && echo ${PR_NUMBER:-CIRCLE_BRANCH}
+      - run: PR_NUMBER='' NAME_BRANCH=${CIRCLE_BRANCH} && echo ${PR_NUMBER} && echo ${PR_NUMBER:-$CIRCLE_BRANCH} 
+      - run: echo ${PR_NUMBER}
+      - run: echo ${CIRCLE_BRANCH}
+      - run:
+          name: what to chose
+          command: echo ${PR_NUMBER:-CIRCLE_BRANCH}
+      - run:
+          name: empty
+          command: PR_NUMBER='' echo ${PR_NUMBER:-CIRCLE_BRANCH}
+      - run:
+          name: unset
+          command: unset PR_NUMBER && echo ${PR_NUMBER:-CIRCLE_BRANCH}
