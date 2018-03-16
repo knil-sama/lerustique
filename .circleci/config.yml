@@ -13,7 +13,7 @@ jobs:
       - run:
           name: export
           command: PR_NUMBER=${CIRCLE_PULL_REQUEST##*/} NAME_BRANCH=${CIRCLE_BRANCH} && echo ${PR_NUMBER} && echo ${PR_NUMBER:-NAME_BRANCH}
-      - run: PR_NUMBER='' NAME_BRANCH=${CIRCLE_BRANCH} && echo ${PR_NUMBER} && echo ${PR_NUMBER:-NAME_BRANCH} 
+      - run: PR_NUMBER='' NAME_BRANCH=${CIRCLE_BRANCH} && echo ${PR_NUMBER} && echo ${PR_NUMBER:-$NAME_BRANCH} 
       - run: echo ${PR_NUMBER}
       - run: echo ${CIRCLE_BRANCH}
       - run:
