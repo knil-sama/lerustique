@@ -8,11 +8,9 @@ jobs:
       TEST_REAL_NAME: "echo ${TEST_PR_NUMBER:-CIRCLE_BRANCH}"
     steps:
       - checkout
-      - run: echo ${TEST_PR_NUMBER}
-      - run: echo ${TEST_REAL_NAME}
       - run:
           name: export
-          command: PR_NUMBER=${CIRCLE_PULL_REQUEST##*/} NAME_BRANCH=${CIRCLE_BRANCH} && echo ${PR_NUMBER} && echo ${PR_NUMBER:-NAME_BRANCH}
+          command: PR_NUMBER=${CIRCLE_PULL_REQUEST##*/} && echo ${PR_NUMBER} && echo ${PR_NUMBER:-CIRCLE_BRANCH}
       - run: PR_NUMBER='' NAME_BRANCH=${CIRCLE_BRANCH} && echo ${PR_NUMBER} && echo ${PR_NUMBER:-$NAME_BRANCH} 
       - run: echo ${PR_NUMBER}
       - run: echo ${CIRCLE_BRANCH}
