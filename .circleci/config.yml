@@ -4,8 +4,8 @@ jobs:
     docker:
       - image: debian:stretch
     environment:
-      TEST_PR_NUMBER: "${CIRCLE_PULL_REQUEST##*/}"
-      TEST_REAL_NAME: "${TEST_PR_NUMBER:-CIRCLE_BRANCH}"
+      TEST_PR_NUMBER: "echo ${CIRCLE_PULL_REQUEST##*/}"
+      TEST_REAL_NAME: "echo ${TEST_PR_NUMBER:-CIRCLE_BRANCH}"
     steps:
       - checkout
       - run: echo $TEST_PR_NUMBER
