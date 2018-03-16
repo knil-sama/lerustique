@@ -17,3 +17,6 @@ jobs:
       - run:
           name: test4
           command: echo ${CIRCLE_PULL_REQUEST##*/}
+      - run:
+          name: test5
+          command: echo ${CIRCLE_BRANCH}
